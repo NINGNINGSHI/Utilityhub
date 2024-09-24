@@ -1,30 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '../css/style.css';
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import Home from "./pages/home";
+import {NextUIProvider} from "@nextui-org/react";
+import NavbarHeader from "./components/navbar";
+import Hub from "./pages/hub";
+import AboutMe from "./pages/about-me";
+import CompareCsv from "./pages/compare-csv";
 
-function App() {
-    const [message, setMessage] = useState('');
-
-    useEffect(() => {
-        fetch('/api/message/')
-            .then(response => response.json())
-            .then(data => {
-                setMessage(data.message);
-            })
-            .catch(error => console.error('Error fetching message:', error));
-    }, []);
-
-    return (
-        <div>
-            <h1 className="text-3xl font-bold underline">
-                Hello world!
-            </h1>
-            <p>{message}</p>
-        </div>
-    );
-}
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Home/>,
+    },
+    {
+        path: "/hub",
+        element: <Hub/>
+    },
+    {
+        path: "/compare-csv",
+        element: <CompareCsv/>
+    },
+    {
+        path: "/about-me",
+        element: <AboutMe/>
+    },
+]);
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
-    ReactDOM.createRoot(rootElement).render(<App/>);
+    ReactDOM.createRoot(rootElement).render(
+        <NextUIProvider>
+            <NavbarHeader/>
+            <RouterProvider router={router} />
+        </NextUIProvider>
+    );
 }
