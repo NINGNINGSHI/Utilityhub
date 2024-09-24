@@ -34,6 +34,10 @@ module.exports = {
                 include: path.resolve(__dirname, 'web/static'),
                 use: ['style-loader', 'css-loader', 'postcss-loader'],
             },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loader: 'file-loader',
+            }
         ],
     },
     resolve: {
