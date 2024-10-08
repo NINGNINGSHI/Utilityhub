@@ -2,6 +2,7 @@ import * as React from "react";
 import {Link, Navbar, NavbarBrand, NavbarContent, NavbarItem} from "@nextui-org/react";
 import Logo from "../../icons/logo";
 import IconButton from "./icon-button";
+import GithubButton from "./github-button";
 
 export default function NavbarHeader() {
     return (
@@ -20,6 +21,9 @@ export default function NavbarHeader() {
                     <Link isBlock color="foreground" href="about-me">
                         About me
                     </Link>
+                </NavbarItem>
+                <NavbarItem>
+                    <GithubButton/>
                 </NavbarItem>
             </NavbarContent>
         </Navbar>
